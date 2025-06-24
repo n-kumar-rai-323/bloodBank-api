@@ -13,10 +13,10 @@ class AuthController {
 
     loginUser(req, res, next) {
         res.json({
-            data:null,
+            data: null,
             message: "Login successful!",
             status: "Success",
-            options:null
+            options: null
         });
     }
 }
