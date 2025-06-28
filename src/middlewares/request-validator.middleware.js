@@ -1,11 +1,16 @@
 const bodyValidator = (schema) => {
     return async(req, res, next) => {
         try {
+           
             const data = req.body;
             let response = await schema.validateAsync(data,{
                 abortEarly: false
             });
+            res.json({
+               data:response
+            })
         } catch (exception) {
+            console.log(exception.details)
             let messageBag={}
             if(exception.details){
                 exception.details.map((val)=>{
@@ -16,7 +21,7 @@ const bodyValidator = (schema) => {
                 })
             }
             next({
-                details :messageBag,
+                details : messageBag,
                 code:400,
                 message:"Validation Failed",
                 status:"VALIDATION FAILED"

@@ -18,5 +18,5 @@ routerConfig.get("/blood", (req, res, next) => {
 
 routerConfig.use('/auth', authRouter);
 routerConfig.use('/users', userRoute);
-console.log("I a from Router config")
+
 module.exports = routerConfig;
