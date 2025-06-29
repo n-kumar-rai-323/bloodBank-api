@@ -1,7 +1,7 @@
 const UserRole = {
     ADMIN: "admin",
-    SELLER: "seller",
-    CUSTOMER: "customer"
+    DONOR: "donor",
+    RECIPIENT: "recipient"
 }
 const bloodType = {
     A_POSITIVE: "A+",

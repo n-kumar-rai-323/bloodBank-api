@@ -25,3 +25,15 @@ routerConfig.post("/brand/create", functionData, bannerFun, (req, res, next) => 
 
 # Validation in express application
 => npm i --save cookie-parser and csv parser this is also middleware 
+
+
+# Express data handling in express
+npm i multer 
+
+# File upload in express 
+
+
+# Cloudinary in express
+multer S3  
+
+# SMTP in express 

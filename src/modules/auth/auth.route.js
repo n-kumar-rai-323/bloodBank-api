@@ -6,7 +6,7 @@ const authController = require("./auth.controller");
 const {UserRegisterDTO}=require("./auth.validator");
 const uploader = require("../../middlewares/uploader.middleware");
 
-authRouter.post('/register',bodyValidator(UserRegisterDTO), authController.registerUser);
+authRouter.post('/register',uploader().single("image"),bodyValidator(UserRegisterDTO), authController.registerUser);
 
 
 

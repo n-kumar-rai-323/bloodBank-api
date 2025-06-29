@@ -1,26 +1,35 @@
 // src/modules/auth/auth.controller.js
 
+const cloudinarySvc = require("../../services/cloudinary.services");
+
 class AuthController {
-    registerUser(req, res, next) {
-        let result = req.body;
-        res.json({
-            data: result,
-            message: "hello from auth register..",
-            status: "Success",
-            options: null
-        });
+    registerUser = async (req, res, next)=>{
+        try {
+            let payload = req.body;
+            let image = await cloudinarySvc.uploadFile(req.file.path, "user/")
+            res.json({
+                data: {
+                    payload,
+                    image
+                },
+                // message: "hello from auth register..",
+                // status: "Success",
+                // options: null
+            });
+        } catch (exception) {
+            next(exception)
+        }
     }
 
-    loginUser(req, res, next) {
-        res.json({
-            data: null,
-            message: "Login successful!",
-            status: "Success",
-            options: null
-        });
-    }
+    // loginUser(req, res, next) {
+    //     res.json({
+    //         data: null,
+    //         message: "Login successful!",
+    //         status: "Success",
+    //         options: null
+    //     });
+    // }
 }
 
 const authControllerInstance = new AuthController();
-console.log("i am from Auth Controller")
 module.exports = authControllerInstance;

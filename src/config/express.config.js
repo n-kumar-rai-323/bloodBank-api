@@ -3,8 +3,9 @@ const routerConfig = require("./router.config")
 const app = express()
 
 app.use(express.json())
-
+app.use(express.urlencoded())
 app.use("/api", routerConfig)
+
 app.use((req, res, next) => {
     next({
         code: 404,

@@ -1,16 +1,12 @@
 const bodyValidator = (schema) => {
     return async(req, res, next) => {
         try {
-           
-            const data = req.body;
-            let response = await schema.validateAsync(data,{
+           await schema.validateAsync(req.body,{
                 abortEarly: false
             });
-            res.json({
-               data:response
-            })
+            next();
+           
         } catch (exception) {
-            console.log(exception.details)
             let messageBag={}
             if(exception.details){
                 exception.details.map((val)=>{

@@ -8,8 +8,9 @@ const UserRegisterDTO = Joi.object({
     confirmPassword: Joi.string().allow(Joi.ref('password')).required(),
     countryCode:Joi.string(),
     phone:Joi.string().min(10).max(10),
-    blood: Joi.string().allow(bloodType.A_POSITIVE, bloodType.A_NEGATIVE, bloodType.B_POSITIVE, bloodType.B_NEGATIVE, bloodType.AB_POSITIVE, bloodType.AB_NEGATIVE, bloodType.O_POSITIVE, bloodType.O_NEGATIVE).required(),
-    role: Joi.string().allow(UserRole.ADMIN, UserRole.SELLER, UserRole.CUSTOMER).default(UserRole.CUSTOMER)
+    Blood_Type: Joi.string().allow(bloodType.A_POSITIVE, bloodType.A_NEGATIVE, bloodType.B_POSITIVE, bloodType.B_NEGATIVE, bloodType.AB_POSITIVE, bloodType.AB_NEGATIVE, bloodType.O_POSITIVE, bloodType.O_NEGATIVE).required(),
+    role: Joi.string().allow(UserRole.ADMIN, UserRole.DONOR, UserRole.RECIPIENT).required(),
+  
 })
 
 module.exports = { UserRegisterDTO }
