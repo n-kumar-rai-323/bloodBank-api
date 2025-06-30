@@ -13,30 +13,33 @@ class CloudinaryServices {
 
     uploadFile = async (file, dir = '') => {
         try {
-            const uploadResult = await cloudinary.uploader.upload(file, { // Added await here
+            const uploadResult = await cloudinary.uploader.upload(file, { 
                 unique_filename: true,
-                folder: "/blood/"+dir,
+                folder: "/blood/" + dir,
             });
 
-            // Ensure the file exists before attempting to unlink
+            
             if (fs.existsSync(file)) {
                 fs.unlinkSync(file);
             }
-            
-            const optimizeUrl = cloudinary.url(uploadResult.public_id, { // Changed from (await uploadResult) to uploadResult
-                quality:'auto',
+
+            const optimizeUrl = cloudinary.url(uploadResult.public_id, { 
+                quality: 'auto',
                 fetch_format: 'auto'
             });
-            
-            return { uploadResult, optimizeUrl };
+
+            return {
+                url: uploadResult.secure_url,
+                optimizeUrl: optimizeUrl
+            };
 
         } catch (exception) {
-            console.error("Cloudinary Upload Error:", exception); // Log the actual exception
+            console.error("Cloudinary Upload Error:", exception); 
             throw {
                 code: 422,
                 message: "File upload error...",
                 status: "FILE_UPLOAD_ERROR",
-                details: exception.message || "No specific error message provided." // Add details from exception
+                details: exception.message || "No specific error message provided." 
             };
         }
     }

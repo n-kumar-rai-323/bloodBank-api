@@ -37,3 +37,4 @@ npm i multer
 multer S3  
 
 # SMTP in express 
+bcryptjs 

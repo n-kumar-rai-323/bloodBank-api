@@ -1,22 +1,26 @@
-// src/modules/auth/auth.controller.js
-
+const fs = require("fs")
+const bcrypt = require("bcryptjs")
 const cloudinarySvc = require("../../services/cloudinary.services");
 
 class AuthController {
-    registerUser = async (req, res, next)=>{
+    registerUser = async (req, res, next) => {
         try {
+            
             let payload = req.body;
-            let image = await cloudinarySvc.uploadFile(req.file.path, "user/")
+            payload.image = await cloudinarySvc.uploadFile(req.file.path, "user/")
+            payload.password = bcrypt.hashSync(payload.password, 12)
+
+
+
+
+
             res.json({
                 data: {
-                    payload,
-                    image
+                    payload
                 },
-                // message: "hello from auth register..",
-                // status: "Success",
-                // options: null
             });
         } catch (exception) {
+
             next(exception)
         }
     }

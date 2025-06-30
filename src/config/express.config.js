@@ -1,9 +1,12 @@
 const express = require("express")
 const routerConfig = require("./router.config")
 const app = express()
+const fs = require("fs")
 
 app.use(express.json())
 app.use(express.urlencoded())
+
+
 app.use("/api", routerConfig)
 
 app.use((req, res, next) => {
@@ -19,13 +22,18 @@ app.use((error, req, res, next) => {
     let code = error.code || 500
     let errorDetail = error.details || null
     let msg = error.message || "Server Error"
-    let status= error.status || "SERVER_ERROR"
-    
+    let status = error.status || "SERVER_ERROR"
+
+
+    if (req.file && fs.existsSync(req.file.path)) {
+        fs.unlinkSync(req.file.path)
+    }
+
     res.status(code).json({
-        error:errorDetail,
+        error: errorDetail,
         message: msg,
-        status:status,
-        options:null
+        status: status,
+        options: null
     })
 })
 module.exports = { app }
