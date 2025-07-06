@@ -1,8 +1,18 @@
 require("dotenv").config()
 const cloudinaryConfig ={
     cloudName:process.env.CLOUDINARY_CLOUD_NAME,
-    apiKey:process.env.CLOUDINARY_API_KEY,
-    apiSecret:process.env.CLOUDINARY_API_SECRET
+    apiKey: process.env.CLOUDINARY_API_KEY,
+    apiSecret: process.env.CLOUDINARY_API_SECRET
 }
 
-module.exports = cloudinaryConfig
+const smtpConfig={
+    provider:process.env.SMTP_PROVIDER,
+    host:process.env.SMTP_HOST,
+    port:process.env.SMTP_PORT,
+    user:process.env.SMTP_USER,
+    password:process.env.APP_PASSWORD,
+    from:process.env.SMTP_FROM
+}
+
+
+module.exports = {cloudinaryConfig, smtpConfig}
