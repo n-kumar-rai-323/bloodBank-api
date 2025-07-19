@@ -9,3 +9,4 @@ Server error responses (500 – 599)
 <!-- Mongodb Operation -->
 db.users.find()
 db.users.findOne()
+db.users.find({role:"admin"})
