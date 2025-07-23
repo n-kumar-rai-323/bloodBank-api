@@ -48,7 +48,6 @@ class EmailService {
             }
 
             let result = await this.#transport.sendMail(body)
-            console.log(result)
             return result
         } catch (exception) {
             throw {
