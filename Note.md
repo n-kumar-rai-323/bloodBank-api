@@ -10,3 +10,15 @@ Server error responses (500 – 599)
 db.users.find()
 db.users.findOne()
 db.users.find({role:"admin"})
+
+
+
+<!-- Database  -->
+
+-SQL (relational)
+-NoSql (Non-Relational)
+
+
+<!-- mongodb Query (CRUD) -->
+-Create
+    -  `db.collectionName.insertOne(JsonOb)

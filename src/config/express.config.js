@@ -1,4 +1,5 @@
 const express = require("express")
+require("./mongoose")
 const routerConfig = require("./router.config")
 const app = express()
 const fs = require("fs")

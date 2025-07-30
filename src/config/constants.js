@@ -1,7 +1,8 @@
 const UserRole = {
     ADMIN: "admin",
     DONOR: "donor",
-    RECIPIENT: "recipient"
+    RECIPIENT: "recipient",
+    BLOOD_BANK:"blood_bank"
 }
 const bloodType = {
     A_POSITIVE: "A+",
@@ -14,5 +15,14 @@ const bloodType = {
     O_NEGATIVE: "O-"
 
 }
+const Gender={
+    MALE:"male",
+    FEMALE:"female",
+    OTHER:"other"
+}
+const UserStatus={
+    ACTIVE:"active",
+    INACTIVE:"inactive"
+}
 
-module.exports = {UserRole, bloodType}
+module.exports = {UserRole, bloodType , Gender, UserStatus}

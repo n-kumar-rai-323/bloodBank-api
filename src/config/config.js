@@ -14,5 +14,11 @@ const smtpConfig={
     from:process.env.SMTP_FROM
 }
 
+const dbConfig={
+    mongodb:{
+        URL:process.env.MONGODB_URL,
+        name:process.env.MONGODB_NAME
+    }
+}
 
-module.exports = {cloudinaryConfig, smtpConfig}
+module.exports = {cloudinaryConfig, smtpConfig, dbConfig}
