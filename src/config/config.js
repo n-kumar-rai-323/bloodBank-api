@@ -21,4 +21,8 @@ const dbConfig={
     }
 }
 
-module.exports = {cloudinaryConfig, smtpConfig, dbConfig}
+const AppConfig ={
+    frontUrl:process.env.FRONTEND_URL || "http://localhost:5173/",
+}
+
+module.exports = {cloudinaryConfig, smtpConfig, dbConfig, AppConfig}

@@ -25,4 +25,5 @@ const UserStatus={
     INACTIVE:"inactive"
 }
 
+
 module.exports = {UserRole, bloodType , Gender, UserStatus}
