@@ -20,6 +20,23 @@ class BaseService {
             throw exception
         }
     }
+    getAllRowsByFilter = async (filter = {}, query = {}) => {
+        try {
+            const allDataList = await this.#modelClass.find(filter);
+            const count = await this.#modelClass.countDocuments(filter);
+            return {
+                data: allDataList,
+                pagination: {
+                    total: count,
+                    page: 1,
+                    pageSize: 10
+                }
+            }
+
+        } catch (exception) {
+            throw exception
+        }
+    }
 
     updateOneRowByFilter = async (filter, data) => {
         try {

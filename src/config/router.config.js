@@ -4,6 +4,7 @@ const express = require('express');
 const routerConfig = express.Router();
 
 const authRouter = require("../modules/auth/auth.route");
+const userRouter = require('../modules/user/user.routes');
 
 
 routerConfig.get("/blood", (req, res, next) => {
@@ -17,6 +18,8 @@ routerConfig.get("/blood", (req, res, next) => {
 });
 
 routerConfig.use('/auth', authRouter);
+
+routerConfig.use("/user",userRouter)
 
 
 module.exports = routerConfig;

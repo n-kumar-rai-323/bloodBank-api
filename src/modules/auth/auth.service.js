@@ -1,9 +1,9 @@
-const { UserStatus} = require("../../config/constants");
+const { UserStatus } = require("../../config/constants");
 const BaseService = require("../../services/base.service");
 const cloudinarySvc = require("../../services/cloudinary.services");
 const randdomStringGenerate = require("../../utilities/helplers");
 const UserModel = require("../user/user.model")
-const bcrypt= require("bcryptjs")
+const bcrypt = require("bcryptjs")
 const emailSvc = require("../../services/email.service");
 const { AppConfig } = require("../../config/config");
 
@@ -15,17 +15,17 @@ class AuthService extends BaseService {
             payload.password = bcrypt.hashSync(payload.password, 12)
 
             payload.status = UserStatus.INACTIVE
-            payload.activationCode =randdomStringGenerate(100)
+            payload.activationCode = randdomStringGenerate(100)
             return payload
         } catch (exception) {
             throw (exception)
         }
     }
 
-    activationNotify= async(user)=>{
-        try{
+    activationNotify = async (user) => {
+        try {
             const response = await emailSvc.sendEmail({
-           // ...existing code...
+                // ...existing code...
                 to: user.email,
                 sub: "Activate Your Account!!!",
                 message: `
@@ -62,14 +62,14 @@ class AuthService extends BaseService {
                 `
 
             })
-        }catch(exception){
+        } catch (exception) {
             throw exception
         }
     }
 
-    notifyActivationSuccess=async(user)=>{
-        try{
-           return await emailSvc.sendEmail({
+    notifyActivationSuccess = async (user) => {
+        try {
+            return await emailSvc.sendEmail({
                 to: user.email,
                 sub: "Account Activated Successfully!!!",
                 message: `
@@ -101,8 +101,22 @@ class AuthService extends BaseService {
                 </div>
                 `
             })
-        }catch(exception){
+        } catch (exception) {
             throw exception
+        }
+    }
+
+    getUserPublicProfile = async (user) => {
+        return {
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            image: user.image,
+            role: user.role,
+            phone: user.phone,
+            bloodGroup: user.bloodGroup,
+            address: user.address,
+            gender: user.gender
         }
     }
 }

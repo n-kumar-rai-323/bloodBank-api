@@ -23,6 +23,7 @@ const dbConfig={
 
 const AppConfig ={
     frontUrl:process.env.FRONTEND_URL || "http://localhost:5173/",
+    jwtSecret:process.env.JWT_SECRET
 }
 
 module.exports = {cloudinaryConfig, smtpConfig, dbConfig, AppConfig}

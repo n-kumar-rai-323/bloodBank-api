@@ -13,8 +13,17 @@ const UserRegisterDTO = Joi.object({
     bloodGroup: Joi.string().allow(bloodType.A_POSITIVE, bloodType.A_NEGATIVE, bloodType.B_POSITIVE, bloodType.B_NEGATIVE, bloodType.AB_POSITIVE, bloodType.AB_NEGATIVE, bloodType.O_POSITIVE, bloodType.O_NEGATIVE).required(),
     role: Joi.string().allow(UserRole.ADMIN, UserRole.DONOR, UserRole.RECIPIENT).required(),
     gender:Joi.string().regex(/^(male|female|other)$/).optional(),
-    address:Joi.string()
-
+    address: Joi.string(),
+    image: Joi.object({
+        url: Joi.string().uri().optional(),
+        optimizedUrl: Joi.string().uri().optional()
+    }).optional()
 })
 
-module.exports = { UserRegisterDTO }
+
+const loginDTO = Joi.object({
+    email: Joi.string().email().required(),
+    password: Joi.string().required()
+});
+
+module.exports = { UserRegisterDTO, loginDTO }

@@ -54,6 +54,10 @@ const UserSchema = new mongoose.Schema({
         enum:[UserStatus.ACTIVE, UserStatus.INACTIVE],
         default:UserStatus.INACTIVE
     },
+    image:{
+        url: String,
+        optimizedUrl: String,
+    },
     activationCode: String,
     forgetPasswordCode: String,
     expiryDate:Date,
